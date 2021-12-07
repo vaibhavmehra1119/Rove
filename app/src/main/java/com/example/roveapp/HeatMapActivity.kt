@@ -110,15 +110,17 @@ class HeatMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         val data = generateHeatMapData()
-
         val heatMapProvider = HeatmapTileProvider.Builder()
             .weightedData(data) // load our weighted data
             .radius(50) // optional, in pixels, can be anything between 20 and 50
             .build()
-
         googleMap.addTileOverlay(TileOverlayOptions().tileProvider(heatMapProvider))
-
         val indiaLatLng = LatLng(26.8467, 80.9462)
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(indiaLatLng, 15f))
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(indiaLatLng)
+                .title("Lucknow")
+                .snippet("Latitude: 26.8467, Longitude: 80.9462"))
     }
 }
