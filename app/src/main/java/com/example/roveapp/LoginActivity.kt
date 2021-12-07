@@ -19,9 +19,10 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.password
         val button = binding.login
         mAuth = FirebaseAuth.getInstance()
-        val email = username.getText().toString()
-        val pass = password.getText().toString()
+
         button.setOnClickListener {
+            val email = username.getText().toString()
+            val pass = password.getText().toString()
             mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(
